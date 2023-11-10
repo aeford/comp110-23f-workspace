@@ -1,21 +1,16 @@
-"""Game that only completes when you guess the right number"""
+"""Test my zip function"""
+__author__ = "730566761"
 
-from random import randint
+from lessons.zip import zip
 
-secret: int = randint(1,10)
-guess: int = int(input("Guess a number between 1 and 10: "))
-number_of_tries: int = 3
-tries_count: int = 1
+def test_different_lengths():
+    """If lists are different lengths return empty dictionary."""
+    test_key: list[str] = ["happy"]
+    test_value: list[int] =[1,2]
+    assert zip(test_key, test_value) == {}
 
-while (guess != secret) and (tries_count < number_of_tries):
-    print("Wrong!")
-    if (guess < 1) or (guess > 10):
-        print("That's not between 1 and 10!")
-    if guess > secret:
-        print("Your guess was too high!")
-    else:
-        print("Your guess was too low!")
-    guess = int(input("Guess again: "))
-    tries_count += 1
-if guess == secret:
-    print("You got it!")
+def test_list_length_1():
+    """Testing on a list with one element."""
+    test_key: list[str] = ["happy"]
+    test_values: list[int] = [24]
+    assert zip(test_key, test_values) == {"happy": 24}
