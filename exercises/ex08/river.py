@@ -4,12 +4,16 @@ from exercises.ex08.fish import Fish
 from exercises.ex08.bear import Bear
 
 class River:
+
+    day: int
+    bears: list[Bear]
+    fish: list[Fish]
     
     def __init__(self, num_fish: int, num_bears:int):
         """New River with num_fish Fish and num_bears Bears"""
         self.day: int = 0
-        self.fish: list[Fish] = []
-        self.bears: list[Bear] = []
+        self.fish: list[Fish] = [Fish() for _ in range(num_fish)]
+        self.bears: list[Bear] = [Bear() for _ in range(num_bears)]
         # populate the river with fish and bears
         for x in range(0, num_fish):
             self.fish.append(Fish())
@@ -17,9 +21,12 @@ class River:
             self.bears.append(Bear())
 
     def check_ages(self):
+        self.fish = [fish for fish in self.fish if fish.age <= 3]
+        self.bears = [bear for bear in self.bears if bear.age <= 5]
         return None
 
     def bears_eating(self):
+        
         return None
     
     def check_hunger(self):
@@ -32,6 +39,11 @@ class River:
         return None
     
     def view_river(self):
+        num_fish = len(self.fish)
+        num_bears = len(self.bears)
+        print(f"~~~ Day {self.day}: ~~~")
+        print(f"Fish population: {num_fish}")
+        print(f"Bear population: {num_bears}")
         return None
             
     def one_river_day(self):
@@ -57,3 +69,13 @@ class River:
         # Visualize River
         self.view_river()
             
+    def one_river_week(self):
+        for _ in range(7):
+            self.one_river_day
+        return None
+    
+    def remove_fish(self, amount: int):
+        for _ in range(amount):
+            if self.fish:
+                self.fish.pop(0)
+        return None
